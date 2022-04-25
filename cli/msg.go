@@ -44,6 +44,7 @@ var MsgCmds = &cli.Command{
 		markBadCmd,
 		clearUnFillMessageCmd,
 		recoverFailedMsgCmd,
+		fixMessagerCmd,
 	},
 }
 
