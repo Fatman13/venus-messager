@@ -144,6 +144,34 @@ var searchCmd = &cli.Command{
 var waitMessagerCmd = &cli.Command{
 	Name:  "wait",
 	Usage: "wait a messager msg id for result",
+	Flags: []cli.Flag{
+		&cli.StringFlag{
+			Name:     "id",
+			Usage:    "message id",
+			Required: true,
+		},
+		&cli.BoolFlag{
+			Name:        "send",
+			Usage:       "message cid",
+			DefaultText: "false",
+		},
+	},
+	Action: func(cctx *cli.Context) error {
+		client, closer, err := getAPI(cctx)
+		if err != nil {
+			return err
+		}
+		defer closer()
+		id := cctx.String("id")
+		send := cctx.Bool("send")
+
+		return client.FixMsg(cctx.Context, id, send)
+	},
+}
+
+var fixMessagerCmd = &cli.Command{
+	Name:  "fix-msg",
+	Usage: "just hack",
 	Action: func(cctx *cli.Context) error {
 		client, closer, err := getAPI(cctx)
 		if err != nil {

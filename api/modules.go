@@ -105,6 +105,10 @@ func (m MessageImp) ForcePushMessage(ctx context.Context, account string, msg *v
 	return m.MessageSrv.PushMessage(ctx, account, msg, meta)
 }
 
+func (m MessageImp) FixMsg(ctx context.Context, id string, send bool) error {
+	return m.MessageSrv.FixMsg(ctx, id, send)
+}
+
 func (m MessageImp) ForcePushMessageWithId(ctx context.Context, account string, id string, msg *venusTypes.Message, meta *types.SendSpec) (string, error) {
 	return m.MessageSrv.PushMessageWithId(ctx, account, id, msg, meta)
 }
